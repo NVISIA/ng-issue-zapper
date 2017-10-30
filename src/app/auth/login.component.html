@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-title>Please Login</mat-card-title>
+  <form [formGroup]="loginForm" (ngSubmit)="commandLogin(loginForm)">
+    <mat-input-container>
+      <input matInput
+             [ngClass]="{'error': isValid('email') }"
+             formControlName="email" placeholder="Email" type="email" style="width: 350px;">
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput
+             [ngClass]="{'error': isValid('password') }"
+             formControlName="password" type="password" placeholder="Password" style="width: 350px;">
+    </mat-input-container>
+
+
+    <br>
+    <button mat-raised-button color="secondary">Login</button>
+  </form>
+</mat-card>

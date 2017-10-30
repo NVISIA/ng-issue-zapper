@@ -1,0 +1,71 @@
+<mat-card class="card">
+  <mat-card-title>Create An Issue</mat-card-title>
+  <mat-card-content>
+
+
+    <form [formGroup]="issueForm" novalidate (ngSubmit)="commandSaveIssue(issueForm.value)">
+      <input type="hidden" formControlName="id"/>
+
+      <div class="formGroup">
+        <mat-form-field>
+          <input matInput class="form-control" formControlName="title" placeholder="Issue Title">
+        </mat-form-field>
+        <div
+          *ngIf="issueForm.controls['title'].invalid && (issueForm.controls['title'].dirty || issueForm.controls['title'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="issueForm.controls['title'].errors.required">
+            Title is required.
+          </div>
+          <div *ngIf="issueForm.controls['title'].errors.minlength">
+            Title must be at least 5 characters.
+          </div>
+          <div *ngIf="issueForm.controls['title'].errors.maxlength">
+            Title must be less than 50 characters.
+          </div>
+        </div>
+      </div>
+      <div class="formGroup">
+        <mat-form-field>
+          <mat-select placeholder="Priority" formControlName="priority">
+            <mat-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="formGroup">
+        <label>Issue Type:<br></label>
+        <mat-radio-group formControlName="type" placeholder="Type">
+          <mat-radio-button [value]="bug" style="margin-right: 1em;">Bug</mat-radio-button>
+          <mat-radio-button [value]="task" style="margin-right: 1em;">Task</mat-radio-button>
+          <mat-radio-button [value]="request" style="margin-right: 1em;">Feature Request</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="formGroup">
+        <mat-form-field>
+          <textarea matInput formControlName="description" placeholder="Issue Description" cols="80"></textarea>
+        </mat-form-field>
+        <div
+          *ngIf="issueForm.controls['description'].invalid && (issueForm.controls['description'].dirty || issueForm.controls['description'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="issueForm.controls['description'].errors.required">
+            Description is required.
+          </div>
+          <div *ngIf="issueForm.controls['description'].errors.minlength">
+            Description must be at least 5 characters.
+          </div>
+          <div *ngIf="issueForm.controls['description'].errors.maxlength">
+            Description must be less than 250 characters.
+          </div>
+        </div>
+      </div>
+      <div class="formGroup">
+        <mat-checkbox formControlName="isResolved">Resolved</mat-checkbox>
+      </div>
+    </form>
+
+    <mat-card-actions>
+      <button type="button" mat-raised-button color="secondary" (click)="commandGoBack()">&lt; Back</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!issueForm.valid">Save</button>
+    </mat-card-actions>
+
+  </mat-card-content>
+</mat-card>

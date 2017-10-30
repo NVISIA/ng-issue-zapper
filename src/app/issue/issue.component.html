@@ -1,0 +1,11 @@
+
+<mat-card class="card">
+  <mat-card-title [style.text-decoration]="getDecorationForIssue(issue)"
+                  >{{issue.title}} - {{issue.type}}</mat-card-title>
+  <mat-card-content>{{issue.description}}</mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="!issue.isResolved" type="button" (click)="commandResolveIssue(issue)" mat-button color="primary">Resolve</button>
+    <button  type="button" (click)="commandEditIssue(issue)" mat-button color="secondary">Edit</button>
+
+  </mat-card-actions>
+</mat-card>

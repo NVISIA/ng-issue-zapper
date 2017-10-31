@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import {Component, Output, EventEmitter, OnInit} from '@angular/core';
 import { Issue } from "./issue";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IssueService } from "./issue.service";
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap';
     templateUrl: './issue-editor.component.html',
     styleUrls: ['./issue-editor.component.css']
 })
-export class IssueEditorComponent {
+export class IssueEditorComponent implements OnInit {
 
     @Output()
     public newIssue: EventEmitter<Issue>;
@@ -62,10 +62,6 @@ export class IssueEditorComponent {
         this.location.back();
     }
 
-    public commandValidate(form) {
-      console.log(form);
-      console.log(form.errors);
-    }
     public ngOnInit(): void {
         this.route.paramMap
             .switchMap(

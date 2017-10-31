@@ -8,6 +8,7 @@ import {
   MatCardModule,
   MatInputModule,
   MatSnackBarModule,
+  MatTabsModule, MatTableModule, MatSortModule,
   MatToolbarModule, MatSelectModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
 import {MessageService} from './discussion/message.service';
@@ -61,8 +62,7 @@ const routes = [
     FormsModule,
     HttpModule,
     MatButtonModule, MatCardModule, MatInputModule, MatSelectModule, MatRadioModule, MatCheckboxModule,
-    MatSnackBarModule,
-    MatToolbarModule,
+    MatSnackBarModule, MatTabsModule, MatToolbarModule, MatTableModule, MatSortModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],

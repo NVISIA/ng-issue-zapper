@@ -1,3 +1,52 @@
-<div>
-  <issue *ngFor="let issue of allIssues" [issue]="issue"></issue>
-</div>
+<mat-tab-group>
+  <mat-tab label="Listing">
+    <issue *ngFor="let issue of allIssues" [issue]="issue"></issue>
+  </mat-tab>
+  <mat-tab label="Table">
+
+    <mat-card class="card">
+      <mat-card-content>
+
+        <mat-form-field floatPlaceholder="never">
+          <input matInput #filter placeholder="Filter Issues">
+        </mat-form-field>
+
+    <mat-table #table [dataSource]="dataSource" matSort style="margin-top: 1em;">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="priority">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Priority </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.priority}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="resolved">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Resolved </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.isResolved}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+

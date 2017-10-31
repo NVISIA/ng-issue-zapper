@@ -18,6 +18,7 @@ export class IssueListComponent implements OnInit {
   displayedColumns = ['id', 'title', 'type', 'priority', 'resolved'];
   exampleDatabase: ExampleDatabase = null;
   dataSource: ExampleDataSource;
+  listFilter: string;
 
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;

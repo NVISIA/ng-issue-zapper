@@ -19,16 +19,17 @@ import {NavComponent} from './navigation/nav.component';
 import {RouterModule} from '@angular/router';
 import { MessageHomeComponent} from './discussion/message-home.component';
 import {RegisterComponent} from './register/register.component';
-import {AuthService} from './auth/auth.service';
-import {LoginComponent} from './auth/login.component';
-import {UserComponent} from './auth/user.component';
 import {IssueListComponent} from './issue/issue-list.component';
 import {IssueEditorComponent} from './issue/issue-editor.component';
 import {IssueComponent} from './issue/issue.component';
 import {IssueService} from './issue/issue.service';
+import {AuthModule} from './auth/auth.module';
 import {AuthGuard} from './auth/auth-guard';
-import {UserService} from './auth/user.service';
 import {RoleGuard} from './auth/role-guard';
+import {LoginComponent} from './auth/login.component';
+import {UserComponent} from './auth/user.component';
+import {IssueFilterPipe} from "./issue/issue-filter.pipe";
+
 
 const routes = [
   { path: '', component: IssueListComponent },
@@ -47,16 +48,16 @@ const routes = [
     AppComponent,
     IssueComponent,
     IssueEditorComponent,
+    IssueFilterPipe,
     IssueListComponent,
-    LoginComponent,
     MessagesComponent,
     MessageHomeComponent,
     NewMessagesComponent,
     NavComponent,
-    RegisterComponent,
-    UserComponent
+    RegisterComponent
   ],
   imports: [
+    AuthModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
@@ -66,7 +67,7 @@ const routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ AuthGuard, AuthService, IssueService, RoleGuard, UserService, MessageService ],
+  providers: [ IssueService, MessageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

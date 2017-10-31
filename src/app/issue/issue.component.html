@@ -1,7 +1,7 @@
 
 <mat-card class="card">
   <mat-card-title [style.text-decoration]="getDecorationForIssue(issue)"
-                  >{{issue.title}} - {{issue.type}}</mat-card-title>
+                  >{{issue.type | uppercase}} : {{issue.title}}</mat-card-title>
   <mat-card-subtitle >{{issue.owner}}</mat-card-subtitle>
   <mat-card-content>{{issue.description}}</mat-card-content>
   <mat-card-actions>

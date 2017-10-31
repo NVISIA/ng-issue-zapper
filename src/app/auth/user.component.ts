@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from "./auth.service";
-import {WebService} from "../web.service";
+import {MessageService} from "../discussion/message.service";
+import {UserService} from "./user.service";
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,7 @@ export class UserComponent {
   public userForm;
 
   constructor( fb: FormBuilder,
-               private webService: WebService,
+               private userService: UserService,
                private authService: AuthService) {
     this.userForm = fb.group({
       firstName: ['', Validators.required],
@@ -28,7 +29,7 @@ export class UserComponent {
   }
 
   public ngOnInit() {
-    this.webService.getUser().subscribe(
+    this.userService.getUser().subscribe(
       user => {
         this.userForm.patchValue( user );
       }
@@ -37,7 +38,7 @@ export class UserComponent {
 
 
   public commandSave( form ) {
-    this.webService.updateUser(form.value).subscribe(
+    this.userService.updateUser(form.value).subscribe(
       user => {
         this.userForm.patchValue( user );
       }

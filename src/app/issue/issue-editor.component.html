@@ -32,11 +32,12 @@
         </mat-form-field>
       </div>
       <div class="formGroup">
+
         <label>Issue Type:<br></label>
-        <mat-radio-group formControlName="type" placeholder="Type">
-          <mat-radio-button [value]="bug" style="margin-right: 1em;">Bug</mat-radio-button>
-          <mat-radio-button [value]="task" style="margin-right: 1em;">Task</mat-radio-button>
-          <mat-radio-button [value]="request" style="margin-right: 1em;">Feature Request</mat-radio-button>
+        <mat-radio-group formControlName="type" name="type" placeholder="Type">
+          <mat-radio-button  value="bug" style="margin-right: 1em;">Bug</mat-radio-button>
+          <mat-radio-button  value="task" style="margin-right: 1em;">Task</mat-radio-button>
+          <mat-radio-button  value="request" style="margin-right: 1em;">Feature Request</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="formGroup">
@@ -60,12 +61,12 @@
       <div class="formGroup">
         <mat-checkbox formControlName="isResolved">Resolved</mat-checkbox>
       </div>
-    </form>
 
     <mat-card-actions>
       <button type="button" mat-raised-button color="secondary" (click)="commandGoBack()">&lt; Back</button>
       <button type="submit" mat-raised-button color="primary" [disabled]="!issueForm.valid">Save</button>
     </mat-card-actions>
+    </form>
 
   </mat-card-content>
 </mat-card>

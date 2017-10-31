@@ -62,6 +62,10 @@ export class IssueEditorComponent {
         this.location.back();
     }
 
+    public commandValidate(form) {
+      console.log(form);
+      console.log(form.errors);
+    }
     public ngOnInit(): void {
         this.route.paramMap
             .switchMap(

@@ -1,5 +1,5 @@
 import {Component } from '@angular/core';
-import {WebService} from "../web.service";
+import {MessageService} from "./message.service";
 
 
 @Component({
@@ -13,10 +13,10 @@ export class NewMessagesComponent {
     text: ""
   };
 
-  constructor(private webService: WebService) {
+  constructor(private messageService: MessageService) {
   }
 
   public async post() {
-    await this.webService.postMessage(this.message);
+    await this.messageService.postMessage(this.message);
   }
 }

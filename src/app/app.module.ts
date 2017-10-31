@@ -10,7 +10,7 @@ import {
   MatSnackBarModule,
   MatToolbarModule, MatSelectModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
-import {WebService} from "./web.service";
+import {MessageService} from "./discussion/message.service";
 import {HttpModule} from "@angular/http";
 import {NewMessagesComponent} from "./discussion/new-message.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -26,6 +26,7 @@ import {IssueEditorComponent} from "./issue/issue-editor.component";
 import {IssueComponent} from "./issue/issue.component";
 import {IssueService} from "./issue/issue.service";
 import {AuthGuard} from "./auth/auth-guard";
+import {UserService} from "./auth/user.service";
 
 let routes = [
   { path: '', component: IssueListComponent },
@@ -64,7 +65,7 @@ let routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ AuthGuard, AuthService, IssueService, WebService ],
+  providers: [ AuthGuard, AuthService, IssueService, UserService, MessageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

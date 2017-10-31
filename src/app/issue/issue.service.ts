@@ -5,11 +5,12 @@ import { Issue } from "./issue";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
 export class IssueService {
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private authService: AuthService) {
     }
 
     public getAllIssues(): Observable<Array<Issue>> {
@@ -30,28 +31,25 @@ export class IssueService {
     }
 
     public createIssue(issue: Issue): Observable<Issue> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
 
-        return this.http.post("/api/issue", JSON.stringify(issue), { headers: headers })
+
+        return this.http.post("/api/issue", (issue), this.authService.tokenHeader)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     public updateIssue(issue: Issue): Observable<Issue> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
 
-        return this.http.put("/api/issue/" + issue.id, JSON.stringify(issue), { headers: headers })
+
+        return this.http.put("/api/issue/" + issue.id, (issue), this.authService.tokenHeader)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     public deleteIssue(issue: Issue): Observable<Issue> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
 
-        return this.http.delete("/api/issue/" + issue.id, { headers: headers })
+
+        return this.http.delete("/api/issue/" + issue.id, this.authService.tokenHeader)
             .map(this.extractData)
             .catch(this.handleError);
     }

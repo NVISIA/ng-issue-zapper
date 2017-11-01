@@ -9,8 +9,9 @@ import {AuthService} from './auth.service';
 import {UserService} from './user.service';
 import {LoginComponent} from './login.component';
 import {UserComponent} from './user.component';
-import {AuthGuard} from './auth-guard';
+import {AuthGuard} from './auth.guard';
 import {RoleGuard} from './role-guard';
+import {ShowAuthedDirective} from "./show-authed.directive";
 
 @NgModule({
   imports: [
@@ -19,8 +20,8 @@ import {RoleGuard} from './role-guard';
     MatButtonModule, MatCardModule, MatInputModule, MatSelectModule, MatRadioModule, MatCheckboxModule,
     MatSnackBarModule, MatToolbarModule,
     ReactiveFormsModule],
-  declarations: [LoginComponent, UserComponent],
-  exports: [LoginComponent, UserComponent],
+  declarations: [LoginComponent, UserComponent, ShowAuthedDirective],
+  exports: [LoginComponent, UserComponent, ShowAuthedDirective],
   providers: [AuthGuard, AuthService, UserService, RoleGuard]
 })
 export class AuthModule {

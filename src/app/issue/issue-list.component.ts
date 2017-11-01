@@ -26,7 +26,6 @@ export class IssueListComponent implements OnInit {
   constructor(private issueService: IssueService) {
     this.allIssues = [];
     this.exampleDatabase = new ExampleDatabase([]);
-
   }
 
   public ngOnInit() {
@@ -110,7 +109,7 @@ export class ExampleDataSource extends DataSource<any> {
       let searchStr = (item.title + item.owner).toLowerCase();
       return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
     });
-    if (!this._sort.active || this._sort.direction == '') { return data; }
+    if (!this._sort.active || this._sort.direction === '') { return data; }
 
     return data.sort((a, b) => {
       let propertyA: number|string = '';

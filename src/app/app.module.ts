@@ -24,7 +24,7 @@ import {IssueEditorComponent} from './issue/issue-editor.component';
 import {IssueComponent} from './issue/issue.component';
 import {IssueService} from './issue/issue.service';
 import {AuthModule} from './auth/auth.module';
-import {AuthGuard} from './auth/auth-guard';
+import {AuthGuard} from './auth/auth.guard';
 import {RoleGuard} from './auth/role-guard';
 import {LoginComponent} from './auth/login.component';
 import {UserComponent} from './auth/user.component';

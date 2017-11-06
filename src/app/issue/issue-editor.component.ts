@@ -20,11 +20,14 @@ export class IssueEditorComponent implements OnInit {
     public issueForm = new FormGroup({
         id: new FormControl(),
         isResolved: new FormControl(false),
-        title: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])),
-        priority: new FormControl('Medium', Validators.required),
+        title: new FormControl('',
+          Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])),
+        priority: new FormControl('Medium',
+          Validators.required),
         type: new FormControl('bug', Validators.required),
-        description: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(250)]))
-    });
+        description: new FormControl('',
+          Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(250)]))
+    }, Validators.requireBothEqual());
 
     public constructor(
         private issueService: IssueService,
@@ -33,6 +36,11 @@ export class IssueEditorComponent implements OnInit {
         this.newIssue = new EventEmitter<Issue>();
     }
 
+    public validatorRequired( formControl ) {
+      return function( value ) {
+        return value !== undefined;
+      };
+    }
     public commandSaveIssue(issue: Issue) {
 
         if (issue.id) {
